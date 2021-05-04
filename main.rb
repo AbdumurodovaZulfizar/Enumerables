@@ -31,5 +31,38 @@ module Enumerable
     end
     selected_arr
   end
+  # 4.my_all?
+  def my_all?(arg = nil)
+    if arg
+      my_each { |ele| return false unless arg === ele }
+    elsif block_given?
+      my_each { |ele| return false unless yield(ele) }
+    else
+      my_each { |ele| return false unless ele }
+    end
+    true
+  end
+  # 5.my_any?
+  def my_any?(arg = nil)
+    if arg
+      my_each { |ele| return true if arg === ele }
+    elsif block_given?
+      my_each { |ele| return true if yield(ele) }
+    else
+      my_each { |ele| return true if ele }
+    end
+    false
+  end
+  # 6.my_none
+  def my_none?(arg = nil)
+    if arg
+      my_each { |ele| return false if arg === ele }
+    elsif block_given?
+      my_each { |ele| return false if yield(ele) }
+    else
+      my_each { |ele| return false if ele }
+    end
+    true
+  end
 
 end
