@@ -93,7 +93,7 @@ module Enumerable
     result = 0
     if arg1.is_a?(Symbol) && !block_given?
       result = arr[0]
-      1.upto(arr.length - 1) { |i| result = result.send(el1, arr[i]) }
+      1.upto(arr.length - 1) { |i| result = result.send(arg1, arr[i]) }
     elsif arg2.is_a?(Symbol)
       result = arg1
       arr.my_each { |ele| result = result.send(arg2, ele) }
