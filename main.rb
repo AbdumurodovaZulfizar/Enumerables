@@ -64,5 +64,20 @@ module Enumerable
     end
     true
   end
+  # my_count
+  def my_count(arg=nil)
+    arr = *self
+    new_arr=[]
+    if arg
+      return (arr.my_select {|ele| ele==arg}).length
+    elsif block_given?
+      my_each do |ele|
+        new_arr << ele if yield(ele)
+      end
+      return new_arr.length
+    else
+      return arr.length
+    end
+  end
 
 end
