@@ -1,8 +1,7 @@
 module Enumerable
   # 1.my_each
-  def my_each
+  def my_each  # rubocop:disable Style/CaseEquality
     return enum_for unless block_given?
-
     arr = *self
     i = 0
     while i < arr.length
@@ -15,7 +14,6 @@ module Enumerable
   # 2.my_each_with_index
   def my_each_with_index
     return enum_for unless block_given?
-
     arr = *self
     i = 0
     while i < arr.length
@@ -28,7 +26,6 @@ module Enumerable
   # 3.my_select
   def my_select
     return enum_for unless block_given?
-
     selected_arr = []
     my_each do |ele|
       selected_arr << ele if yield(ele)
@@ -91,7 +88,6 @@ module Enumerable
   # 8.my_map
   def my_map(proc = nil)
     return enum_for unless block_given?
-
     arr = *self
     my_arr = []
     if proc
