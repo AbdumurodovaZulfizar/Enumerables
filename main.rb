@@ -2,6 +2,7 @@
 module Enumerable
   def my_each
     return enum_for unless block_given?
+
     arr = *self
     i = 0
     while i < arr.length
@@ -10,8 +11,10 @@ module Enumerable
     end
     self
   end
+
   def my_each_with_index
     return enum_for unless block_given?
+
     arr = *self
     i = 0
     while i < arr.length
@@ -20,14 +23,17 @@ module Enumerable
     end
     self
   end
+
   def my_select
     return enum_for unless block_given?
+
     selected_arr = []
     my_each do |ele|
       selected_arr << ele if yield(ele)
     end
     selected_arr
   end
+
   def my_all?(arg = nil)
     if arg
       my_each { |ele| return false unless arg === ele }
@@ -38,6 +44,7 @@ module Enumerable
     end
     true
   end
+
   def my_any?(arg = nil)
     if arg
       my_each { |ele| return true if arg === ele }
@@ -48,6 +55,7 @@ module Enumerable
     end
     false
   end
+
   def my_none?(arg = nil)
     if arg
       my_each { |ele| return false if arg === ele }
@@ -58,6 +66,7 @@ module Enumerable
     end
     true
   end
+
   def my_count(arg = nil)
     arr = *self
     new_arr = []
@@ -72,8 +81,10 @@ module Enumerable
       arr.length
     end
   end
+
   def my_map(proc = nil)
     return enum_for unless block_given?
+
     arr = *self
     my_arr = []
     if proc
@@ -83,6 +94,7 @@ module Enumerable
     end
     my_arr
   end
+
   def my_inject(arg1 = nil, arg2 = nil)
     arr = *self
     result = 0
