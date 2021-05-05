@@ -1,6 +1,6 @@
+# rubocop:disable Style/CaseEquality
 module Enumerable
-  # 1.my_each
-  def my_each  # rubocop:disable Style/CaseEquality
+  def my_each
     return enum_for unless block_given?
     arr = *self
     i = 0
@@ -10,8 +10,6 @@ module Enumerable
     end
     self
   end
-
-  # 2.my_each_with_index
   def my_each_with_index
     return enum_for unless block_given?
     arr = *self
@@ -22,8 +20,6 @@ module Enumerable
     end
     self
   end
-
-  # 3.my_select
   def my_select
     return enum_for unless block_given?
     selected_arr = []
@@ -32,8 +28,6 @@ module Enumerable
     end
     selected_arr
   end
-
-  # 4.my_all?
   def my_all?(arg = nil)
     if arg
       my_each { |ele| return false unless arg === ele }
@@ -44,8 +38,6 @@ module Enumerable
     end
     true
   end
-
-  # 5.my_any?
   def my_any?(arg = nil)
     if arg
       my_each { |ele| return true if arg === ele }
@@ -56,8 +48,6 @@ module Enumerable
     end
     false
   end
-
-  # 6.my_none
   def my_none?(arg = nil)
     if arg
       my_each { |ele| return false if arg === ele }
@@ -68,8 +58,6 @@ module Enumerable
     end
     true
   end
-
-  # 7.my_count
   def my_count(arg = nil)
     arr = *self
     new_arr = []
@@ -84,8 +72,6 @@ module Enumerable
       arr.length
     end
   end
-
-  # 8.my_map
   def my_map(proc = nil)
     return enum_for unless block_given?
     arr = *self
@@ -97,8 +83,6 @@ module Enumerable
     end
     my_arr
   end
-
-  # 9.my_inject
   def my_inject(arg1 = nil, arg2 = nil)
     arr = *self
     result = 0
@@ -131,3 +115,4 @@ end
 def multiply_els(arr)
   arr.my_inject(:*)
 end
+# rubocop:enable Style/CaseEquality
