@@ -57,14 +57,7 @@ module Enumerable
   end
 
   def my_none?(arg = nil)
-    if arg
-      my_each { |ele| return false if arg === ele }
-    elsif block_given?
-      my_each { |ele| return false if yield(ele) }
-    else
-      my_each { |ele| return false if ele }
-    end
-    true
+    !my_any?(arg)
   end
 
   def my_count(arg = nil)
@@ -100,12 +93,8 @@ module Enumerable
     result = 0
     if arg1.is_a?(Symbol) && !block_given?
       result = arr[0]
-      i = 1
-      while i < arr.length
-        result = result.send(arg1, arr[i])
-        i += 1
-      end
-    elsif arg1.is_a?(Numeric) && arg2.is_a?(Symbol) && !block_given?
+      1.upto(arr.length - 1) { |i| result = result.send(el1, arr[i]) }
+    elsif arg2.is_a?(Symbol)
       result = arg1
       arr.my_each { |ele| result = result.send(arg2, ele) }
     elsif arg1.is_a?(Numeric) && block_given?
@@ -113,11 +102,7 @@ module Enumerable
       arr.my_each { |ele| result = yield(result, ele) }
     else
       result = arr[0]
-      i = 1
-      while i < arr.length
-        result = yield(result, arr[i])
-        i += 1
-      end
+      1.upto(arr.length - 1) { |i| result = yield(result, arr[i]) }
     end
     result
   end
