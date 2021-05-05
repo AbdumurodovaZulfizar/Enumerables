@@ -28,9 +28,7 @@ module Enumerable
     return enum_for unless block_given?
 
     selected_arr = []
-    my_each do |ele|
-      selected_arr << ele if yield(ele)
-    end
+    my_each { |ele| selected_arr << ele if yield(ele) }
     selected_arr
   end
 
@@ -57,7 +55,14 @@ module Enumerable
   end
 
   def my_none?(arg = nil)
-    !my_any?(arg)
+    if arg
+      my_each { |ele| return false if arg === ele }
+    elsif block_given?
+      my_each { |ele| return false if yield(ele) }
+    else
+      my_each { |ele| return false if ele }
+    end
+    true
   end
 
   def my_count(arg = nil)
@@ -66,9 +71,7 @@ module Enumerable
     if arg
       (arr.my_select { |ele| ele == arg }).length
     elsif block_given?
-      my_each do |ele|
-        new_arr << ele if yield(ele)
-      end
+      my_each { |ele| new_arr << ele if yield(ele) }
       new_arr.length
     else
       arr.length
