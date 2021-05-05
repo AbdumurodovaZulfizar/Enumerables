@@ -61,4 +61,4 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 Copyright 2021 Zulfizar Abdumurodova
-- [Apache License](https://github.com/AbdumurodovaZulfizar/Enumerables/blob/enum/feature-branch/LICENSE.md) for this project.
+- [Apache License](https://github.com/AbdumurodovaZulfizar/Enumerables/blob/enum/main/LICENSE.md) for this project.
