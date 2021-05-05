@@ -34,8 +34,8 @@ This project has been built in order to recreate Ruby methods like `.count`, `.i
 
 To get a local copy up and running follow these simple steps.
 
-- `git clone https://github.com/AbdumurodovaZulfizar/bubble-sort.git`
-- `cd bubble-sort`
+- `git clone https://github.com/AbdumurodovaZulfizar/Enumerables.git`
+- `cd Enumerables`
 - Open this repository on your device
 
 ## Authors
