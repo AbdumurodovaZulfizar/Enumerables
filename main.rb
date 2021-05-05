@@ -79,5 +79,47 @@ module Enumerable
       return arr.length
     end
   end
-
+  # my_map
+  def my_map(proc=nil)
+    return enum_for unless block_given?
+    arr=*self
+    my_arr = []
+    if proc
+      arr.my_each {|ele| my_arr << proc.call(ele)}
+    else
+      arr.my_each {|ele| my_arr << yield(ele)}
+    end
+    my_arr
+  end
+  # my_inject
+  def my_inject (arg1 = nil, arg2=nil)
+      arr = *self
+      result = 0
+      if arg1.is_a?(Symbol) && !block_given?
+        result = arr[0]
+        i=1
+        while i < arr.length
+          result = result.send(arg1, arr[i])
+          i+=1
+        end
+      elsif arg1.is_a?(Numeric) && arg2.is_a?(Symbol) && !block_given?
+        result = arg1
+          arr.my_each {|ele| result = result.send(arg2, ele)}
+      elsif arg1.is_a?(Numeric) && block_given?
+        result = arg1
+        arr.my_each {|ele| result = yield(result, ele)}
+      else
+        result = arr[0]
+        i=1
+        while i < arr.length
+          result = yield(result, arr[i])
+          i+=1
+        end
+      end
+      result
+    end
+end
+# test my_inject
+def multiply_els(arr)
+  arr.my_inject(:*)
 end
